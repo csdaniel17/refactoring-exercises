@@ -19,7 +19,14 @@ Forest from the trees.
         zoom: 4
       });
       var geocoder = new google.maps.Geocoder();
-      var city = 'Alanta, GA';
+      var city = 'Dallas, TX';
+      getWeatherInfo(city, map, function(data) {
+        // console.log(data.main.temp);
+        plotMarker(map, data);
+      });
+    }
+
+    function getWeatherInfo(city, map, callback) {
       $.ajax({
         url: 'http://api.openweathermap.org/data/2.5/weather',
         method: 'GET',
@@ -29,14 +36,18 @@ Forest from the trees.
           APPID: 'eac2948bfca65b78a8c5564ecf91d00e'
         },
         success: function(data) {
-          var marker = new google.maps.Marker({
-            map: map,
-            position: { lat: data.coord.lat, lng: data.coord.lon },
-            icon: {
-              url: 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png',
-              anchor: new google.maps.Point(25, 25)
-            }
-          });
+          callback(data);
+        }
+      });
+    }
+
+    function plotMarker(map, data) {
+      var marker = new google.maps.Marker({
+        map: map,
+        position: { lat: data.coord.lat, lng: data.coord.lon },
+        icon: {
+          url: 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png',
+          anchor: new google.maps.Point(25, 25)
         }
       });
     }
