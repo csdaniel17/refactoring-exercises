@@ -59,29 +59,40 @@ Hint 1: merge multiple conditions using the || operator
 Hint 2: cover rest of the cases using an else clause
 */
 function daysInMonth(month) {
-  if (month === 1) {
-    return 31;
-  } else if (month === 2) {
+  // if (month === 1) {
+  //   return 31;
+  // } else if (month === 2) {
+  //   return 28;
+  // } else if (month === 3) {
+  //   return 31;
+  // } else if (month === 4) {
+  //   return 30;
+  // } else if (month === 5) {
+  //   return 31;
+  // } else if (month === 6) {
+  //   return 30;
+  // } else if (month === 7) {
+  //   return 31;
+  // } else if (month === 8) {
+  //   return 31;
+  // } else if (month === 9) {
+  //   return 30;
+  // } else if (month === 10) {
+  //   return 31;
+  // } else if (month === 11) {
+  //   return 30;
+  // } else if (month === 12) {
+  //   return 31;
+  // } else {
+  //   throw new Error('Invalid month: ' + month);
+  // }
+
+  //refactor to:
+  if (month === 2) {
     return 28;
-  } else if (month === 3) {
-    return 31;
-  } else if (month === 4) {
+  } else if (month === 4 || month === 6 || month === 9 || month === 11) {
     return 30;
-  } else if (month === 5) {
-    return 31;
-  } else if (month === 6) {
-    return 30;
-  } else if (month === 7) {
-    return 31;
-  } else if (month === 8) {
-    return 31;
-  } else if (month === 9) {
-    return 30;
-  } else if (month === 10) {
-    return 31;
-  } else if (month === 11) {
-    return 30;
-  } else if (month === 12) {
+  } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
     return 31;
   } else {
     throw new Error('Invalid month: ' + month);
@@ -126,6 +137,29 @@ Hint 1: Extracting an expression within the for loop that is used multiple times
 Bonus: rewrite the for loop using array's reduce method.
 */
 function tallyGrades(students) {
+  // var tally = {
+  //   A: 0,
+  //   B: 0,
+  //   C: 0,
+  //   D: 0,
+  //   F: 0
+  // };
+  // for (var i = 0; i < students.length; i++) {
+  //   if (students[i].grade >= 90) {
+  //     tally.A++;
+  //   } else if (students[i].grade >= 80) {
+  //     tally.B++;
+  //   } else if (students[i].grade >= 70) {
+  //     tally.C++;
+  //   } else if (students[i].grade >= 60) {
+  //     tally.D++;
+  //   } else {
+  //     tally.F++;
+  //   }
+  // }
+  // return tally;
+
+
   var tally = {
     A: 0,
     B: 0,
@@ -134,13 +168,14 @@ function tallyGrades(students) {
     F: 0
   };
   for (var i = 0; i < students.length; i++) {
-    if (students[i].grade >= 90) {
+    var studentGrade = students[i].grade;
+    if (studentGrade >= 90) {
       tally.A++;
-    } else if (students[i].grade >= 80) {
+    } else if (studentGrade >= 80) {
       tally.B++;
-    } else if (students[i].grade >= 70) {
+    } else if (studentGrade >= 70) {
       tally.C++;
-    } else if (students[i].grade >= 60) {
+    } else if (studentGrade >= 60) {
       tally.D++;
     } else {
       tally.F++;
@@ -148,6 +183,7 @@ function tallyGrades(students) {
   }
   return tally;
 }
+
 
 /*
 Simplify the following function by reducing duplication.
