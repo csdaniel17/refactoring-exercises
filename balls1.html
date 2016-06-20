@@ -33,32 +33,46 @@ properties of objects, update the draw-a-ball function to take the object as arg
     }
 
     // attributes for ball 1
-    var ball1 = new Ball(100, 100, 10, 'red');
+    // var ball1 = new Ball(100, 100, 10, 'red');
     // var x1 = 100;
     // var y1 = 100;
     // var radius1 = 10;
     // var color1 = 'red';
 
     // attributes for ball 2
-    var ball2 = new Ball(300, 400, 30, 'green');
+    // var ball2 = new Ball(300, 400, 30, 'green');
     // var x2 = 300;
     // var y2 = 400;
     // var radius2 = 30;
     // var color2 = 'green';
 
+    var balls = [
+      new Ball(100, 100, 10, 'red'),
+      new Ball(200, 100, 30, 'green'),
+      new Ball(300, 100, 20, 'blue'),
+      new Ball(400, 100, 10, 'yellow'),
+      new Ball(100, 200, 30, 'black'),
+      new Ball(200, 200, 40, 'coral'),
+      new Ball(300, 200, 10, 'darkcyan'),
+      new Ball(400, 200, 20, 'purple'),
+      new Ball(300, 400, 10, 'dodgerblue'),
+      new Ball(400, 400, 10, 'orange')
+    ];
 
-
-    function drawBall(ball) {
+    function drawBall(balls) {
       ctx.beginPath();
-      ctx.fillStyle = ball.color;
-      ctx.ellipse(ball.x, ball.y, ball.radius, ball.radius, 0, 0, Math.PI * 2);
+      ctx.fillStyle = balls.color;
+      ctx.ellipse(balls.x, balls.y, balls.radius, balls.radius, 0, 0, Math.PI * 2);
       // ctx.ellipse(x1, y1, radius1, radius1, 0, 0, Math.PI * 2);
       ctx.fill();
     }
 
     function main() {
-      drawBall(ball1);
-      drawBall(ball2);
+      for (var i = 0; i < balls.length; i++) {
+        drawBall(balls[i]);
+      }
+
+      // drawBall(ball2);
       // draw ball 1
       // ctx.beginPath();
       // ctx.fillStyle = color1;
