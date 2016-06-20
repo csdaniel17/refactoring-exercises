@@ -289,6 +289,8 @@ function beats(aPlayer, anotherPlayer) {
     return true;
   } else if (aPlayer === 'scissors' && anotherPlayer === 'paper') {
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -331,23 +333,38 @@ the card objects in the for loop.
 */
 
 
+// function newDeck() {
+//   var deck = [];
+//   for (var i = 1; i <= 13; i++) {
+//     deck.push({ point: i, suit: 'spades' });
+//     deck.push({ point: i, suit: 'hearts' });
+//     deck.push({ point: i, suit: 'clubs' });
+//     deck.push({ point: i, suit: 'diamonds' });
+//   }
+//   return deck;
+// }
+function Card(point, suit) {
+  this.point = point;
+  this.suit = suit;
+}
 function newDeck() {
   var deck = [];
   for (var i = 1; i <= 13; i++) {
-    deck.push({ point: i, suit: 'spades' });
-    deck.push({ point: i, suit: 'hearts' });
-    deck.push({ point: i, suit: 'clubs' });
-    deck.push({ point: i, suit: 'diamonds' });
+    deck.push(new Card(i, 'spades'));
+    deck.push(new Card(i, 'hearts'));
+    deck.push(new Card(i, 'clubs'));
+    deck.push(new Card(i, 'diamonds'));
   }
   return deck;
 }
-
 
 /*
 Bonus Challenge: Tic Tac Toe
 
 Un-suck this code.
 */
+
+
 
 function ticTacToe(board) {
   // horizontal rows
