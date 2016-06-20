@@ -209,17 +209,28 @@ Simplify the following function by reducing duplication.
 Hint 1: Extract a function perhaps called squareOfDifference that takes two numbers and returns there difference squared. Reused the function twice, once for the x case and once for y.
 Hint 2: In the calculation for squareOfDifference, extract a variable diff.
 */
+// function distance(point1, point2) {
+//   // var distance = Math.sqrt(
+//   //   (point1.x - point2.x) * (point1.x - point2.x) +
+//   //   (point1.y - point2.y) * (point1.y - point2.y)
+//   // );
+//   // return distance;
+//   var distance = Math.sqrt(
+//     Math.pow(point1.x - point2.x, 2) +
+//     Math.pow(point1.y - point2.y, 2)
+//   );
+//   return distance;
+// }
+
+function squareOfDifference(one, other) {
+  return Math.pow(one - other, 2);
+}
+
 function distance(point1, point2) {
-  // var distance = Math.sqrt(
-  //   (point1.x - point2.x) * (point1.x - point2.x) +
-  //   (point1.y - point2.y) * (point1.y - point2.y)
-  // );
-  // return distance;
-  var distance = Math.sqrt(
-    Math.pow(point1.x - point2.x, 2) +
-    Math.pow(point1.y - point2.y, 2)
+  return Math.sqrt(
+    squareOfDifference(point1.x, point2.x) +
+    squareOfDifference(point1.y, point2.y)
   );
-  return distance;
 }
 
 /*
@@ -230,22 +241,30 @@ Hint/Option 2: Instead of option 1, extract a function, perhaps called attack, w
 */
 function fight(human, goblin) {
   // human attacks goblin
-  var goblinHitPoints = human.power;
+  var goblinHitPoints = getHitPoints(human, 0.5);
   // 50% chance of double points
-  if (Math.random() > 0.5) {
-    goblinHitPoints = goblinHitPoints * 2;
-  }
+  // if (Math.random() > 0.5) {
+  //   goblinHitPoints = goblinHitPoints * 2;
+  // }
   // induce damage to goblin
   goblin.health -= goblinHitPoints;
 
   // goblin attacks human
-  var humanHitPoints = goblin.power;
+  var humanHitPoints = getHitPoints(goblin, 0.2);
   // 20% chance of double points
-  if (Math.random() > 0.2) {
-    humanHitPoints = humanHitPoints * 2;
-  }
+  // if (Math.random() > 0.2) {
+  //   humanHitPoints = humanHitPoints * 2;
+  // }
   // induce damage to human
   human.health -= humanHitPoints;
+}
+
+function getHitPoints(character, hitPercentage) {
+  var power = character.power;
+  if (Math.random() > hitPercentage) {
+    power = character.power * 2;
+  }
+  return power;
 }
 
 /*
@@ -262,27 +281,47 @@ What is the shorter (shortest) way to write this function?
 Hint 1: the logic for whether one player beats another player can be reused. Write a function beats(aPlayer, anotherPlayer) which returns whether aPlayer beats anotherPlayer. And then use this function twice: beats(player1, player2), and beats(player2, player1).
 Hint 2: do you even need to call the beats function twice? You can use an else statement to cover the rest of the cases.
 */
+
+function beats(aPlayer, anotherPlayer) {
+  if (aPlayer === 'rock' && anotherPlayer === 'scissors') {
+    return true;
+  } else if (aPlayer === 'paper' && anotherPlayer === 'rock') {
+    return true;
+  } else if (aPlayer === 'scissors' && anotherPlayer === 'paper') {
+    return true;
+  }
+}
+
 function roshambo(player1, player2) {
-  if (player1 === 'rock' && player2 === 'sissors') {
-    return 'player 1';
-  } else if (player1 === 'rock' && player2 === 'paper') {
-    return 'player 2';
-  } else if (player1 === 'rock' && player2 === 'rock') {
+  if (player1 === player2) {
     return 'draw';
-  } else if (player1 === 'sissors' && player2 === 'rock') {
-    return 'player 2';
-  } else if (player1 === 'sissors' && player2 === 'sissors') {
-    return 'draw';
-  } else if (player1 === 'sissors' && player2 === 'paper') {
+  } else if (beats(player1, player2)) {
     return 'player 1';
-  } else if (player1 === 'paper' && player2 === 'rock') {
-    return 'player 1';
-  } else if (player1 === 'paper' && player2 === 'paper') {
-    return 'draw';
-  } else if (player1 === 'paper' && player2 === 'sissors') {
+  } else {
     return 'player 2';
   }
 }
+
+  // if (player1 === 'rock' && player2 === 'sissors') {
+  //   return 'player 1';
+  // } else if (player1 === 'rock' && player2 === 'paper') {
+  //   return 'player 2';
+  // } else if (player1 === 'rock' && player2 === 'rock') {
+  //   return 'draw';
+  // } else if (player1 === 'sissors' && player2 === 'rock') {
+  //   return 'player 2';
+  // } else if (player1 === 'sissors' && player2 === 'sissors') {
+  //   return 'draw';
+  // } else if (player1 === 'sissors' && player2 === 'paper') {
+  //   return 'player 1';
+  // } else if (player1 === 'paper' && player2 === 'rock') {
+  //   return 'player 1';
+  // } else if (player1 === 'paper' && player2 === 'paper') {
+  //   return 'draw';
+  // } else if (player1 === 'paper' && player2 === 'sissors') {
+  //   return 'player 2';
+  // }
+
 
 /*
 1. Instead of using object literals to create objects inside

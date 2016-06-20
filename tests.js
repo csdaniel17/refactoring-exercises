@@ -199,15 +199,15 @@ describe('fight', function() {
 
 describe('roshambo', function() {
   it('should give correct answers', function() {
-    expect(roshambo('rock', 'sissors')).toEqual('player 1');
+    expect(roshambo('rock', 'scissors')).toEqual('player 1');
     expect(roshambo('rock', 'paper')).toEqual('player 2');
     expect(roshambo('rock', 'rock')).toEqual('draw');
 
-    expect(roshambo('sissors', 'sissors')).toEqual('draw');
-    expect(roshambo('sissors', 'paper')).toEqual('player 1');
-    expect(roshambo('sissors', 'rock')).toEqual('player 2');
+    expect(roshambo('scissors', 'scissors')).toEqual('draw');
+    expect(roshambo('scissors', 'paper')).toEqual('player 1');
+    expect(roshambo('scissors', 'rock')).toEqual('player 2');
 
-    expect(roshambo('paper', 'sissors')).toEqual('player 2');
+    expect(roshambo('paper', 'scissors')).toEqual('player 2');
     expect(roshambo('paper', 'paper')).toEqual('draw');
     expect(roshambo('paper', 'rock')).toEqual('player 1');
   });
