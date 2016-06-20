@@ -182,7 +182,25 @@ function tallyGrades(students) {
     }
   }
   return tally;
+
+  // students.reduce(function(students, tally) {
+  //
+  //   if (students.grade >= 90) {
+  //     tally.A++;
+  //   } else if (students.grade >= 80) {
+  //     tally.B++;
+  //   } else if (students.grade >= 70) {
+  //     tally.C++;
+  //   } else if (students.grade >= 60) {
+  //     tally.D++;
+  //   } else {
+  //     tally.F++;
+  //   }
+  //   return tally;
+  // });
+
 }
+
 
 
 /*
@@ -192,9 +210,14 @@ Hint 1: Extract a function perhaps called squareOfDifference that takes two numb
 Hint 2: In the calculation for squareOfDifference, extract a variable diff.
 */
 function distance(point1, point2) {
+  // var distance = Math.sqrt(
+  //   (point1.x - point2.x) * (point1.x - point2.x) +
+  //   (point1.y - point2.y) * (point1.y - point2.y)
+  // );
+  // return distance;
   var distance = Math.sqrt(
-    (point1.x - point2.x) * (point1.x - point2.x) +
-    (point1.y - point2.y) * (point1.y - point2.y)
+    Math.pow(point1.x - point2.x, 2) +
+    Math.pow(point1.y - point2.y, 2)
   );
   return distance;
 }
